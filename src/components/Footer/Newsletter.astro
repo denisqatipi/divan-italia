@@ -1,0 +1,32 @@
+---
+---
+<div class="footer-content text-center md:text-left">
+  <h3 class="text-white/80 font-display text-base md:text-lg mb-3 md:mb-6">Newsletter</h3>
+  <p class="text-white/60 text-xs md:text-sm mb-4 md:mb-6 max-w-xs mx-auto md:mx-0">
+    Subscribe to receive updates about new collections and exclusive offers.
+  </p>
+  <form class="space-y-3 md:space-y-4 max-w-xs mx-auto md:mx-0" onsubmit="event.preventDefault()">
+    <div class="relative">
+      <input
+          type="email"
+          placeholder="Your email"
+          class="w-full bg-white/5 border border-white/10 text-white/80 px-3 py-2.5 text-xs md:text-sm focus:outline-none focus:border-accent/40 transition-colors duration-300 placeholder:text-white/40"
+      />
+      <button
+          type="submit"
+          class="absolute right-0 top-0 h-full px-3 text-accent hover:text-accent/80 transition-colors duration-300"
+      >
+        <i class="ri-arrow-right-line"></i>
+      </button>
+    </div>
+    <label class="flex items-start gap-2 cursor-pointer group text-left">
+      <input
+          type="checkbox"
+          class="mt-1 bg-transparent border border-white/20 checked:bg-accent checked:border-accent focus:ring-0 focus:ring-offset-0 rounded-none"
+      />
+      <span class="text-white/40 text-[10px] leading-relaxed group-hover:text-white/50 transition-colors duration-300">
+        I agree to receive promotional emails. You can unsubscribe at any time.
+      </span>
+    </label>
+  </form>
+</div>

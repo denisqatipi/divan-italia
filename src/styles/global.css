@@ -1,0 +1,51 @@
+@font-face {
+  font-family: 'ST_Norilsk';
+  src: url('/fonts/ST_Norilsk.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply antialiased bg-primary text-white;
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Custom letter spacing for the hero title */
+.tracking-wider {
+  letter-spacing: 0.2em;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-primary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-accent/20 rounded-full hover:bg-accent/40;
+}
+
+/* Selection color */
+::selection {
+  @apply bg-accent/30 text-white;
+}

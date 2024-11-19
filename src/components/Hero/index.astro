@@ -1,0 +1,53 @@
+---
+import Background from './Background.astro';
+import Content from './Content.astro';
+import ScrollIndicator from './ScrollIndicator.astro';
+---
+
+<section class="relative min-h-screen overflow-hidden flex items-center bg-primary">
+  <Background />
+  <Content />
+  <ScrollIndicator />
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero animations
+  const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+  timeline
+    .from('.split-text span', {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.2,
+    })
+    .from('.fade-up', {
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+    }, '-=0.5')
+    .from('.fade-up-delay', {
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+    }, '-=0.3');
+
+  // Parallax effect on image if it exists
+  const heroImage = document.querySelector('.scale-animation');
+  if (heroImage) {
+    gsap.to('.scale-animation', {
+      scale: 1.1,
+      scrollTrigger: {
+        trigger: 'section',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1,
+      },
+    });
+  }
+</script>

@@ -1,0 +1,26 @@
+---
+---
+<div class="story-image relative">
+  <div class="story-image-inner relative aspect-square transform-gpu">
+    <img
+      src="/images/elegant-chair.jpg"
+      alt="Elegant Chair"
+      class="w-full h-full object-cover rounded-sm"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-primary/50 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-l from-primary/30 to-transparent"></div>
+  </div>
+  
+  <!-- Decorative elements -->
+  <div class="absolute -top-8 -left-8 w-32 h-32 border border-accent/20 rounded-sm -z-10"></div>
+  <div class="absolute -bottom-8 -right-8 w-32 h-32 border border-accent/20 rounded-sm -z-10"></div>
+  <div class="absolute top-1/2 -translate-y-1/2 -right-4 w-8 h-8 bg-accent/10 rounded-full blur-xl"></div>
+</div>
+
+<style>
+  .story-image-inner {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+</style>

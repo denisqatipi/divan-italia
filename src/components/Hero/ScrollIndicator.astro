@@ -1,0 +1,18 @@
+---
+---
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 scroll-indicator">
+  <div class="w-px h-24 bg-white/20 relative">
+    <div class="absolute top-0 w-full h-1/2 bg-accent animate-scroll"></div>
+  </div>
+</div>
+
+<style>
+  .animate-scroll {
+    animation: scroll 2s infinite;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(200%); }
+  }
+</style>

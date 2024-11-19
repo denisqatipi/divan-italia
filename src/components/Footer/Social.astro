@@ -1,0 +1,34 @@
+---
+const socials = [
+  { label: 'Instagram', href: 'https://instagram.com', icon: 'ri-instagram-line' },
+  { label: 'Pinterest', href: 'https://pinterest.com', icon: 'ri-pinterest-line' },
+  { label: 'LinkedIn', href: 'https://linkedin.com', icon: 'ri-linkedin-line' },
+  { label: 'Facebook', href: 'https://facebook.com', icon: 'ri-facebook-line' }
+];
+---
+<div class="footer-content text-center md:text-left">
+  <h3 class="text-white/80 font-display text-base md:text-lg mb-3 md:mb-6">Connect</h3>
+  <div class="flex justify-center md:justify-start gap-4 md:gap-6">
+    {socials.map(social => (
+        <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-white/60 hover:text-accent transition-colors duration-300 text-lg"
+            aria-label={social.label}
+        >
+          <i class={social.icon}></i>
+        </a>
+    ))}
+  </div>
+  <div class="mt-4 md:mt-6 space-y-2 md:space-y-3">
+    <p class="text-white/60 flex items-center justify-center md:justify-start gap-2 text-xs">
+      <i class="ri-map-pin-line"></i>
+      <span>Via della Moda, 123, Milan, Italy</span>
+    </p>
+    <p class="text-white/60 flex items-center justify-center md:justify-start gap-2 text-xs">
+      <i class="ri-phone-line"></i>
+      <span>+39 02 1234 5678</span>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,118 @@
+---
+import Title from './Title.astro';
+import Stats from './Stats.astro';
+---
+<section class="why-choose-us relative min-h-screen bg-primary flex items-center py-24">
+  <!-- Background effects -->
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(224,163,79,0.03),transparent_70%)]"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-transparent"></div>
+  
+  <div class="max-w-7xl mx-auto px-6 w-full relative">
+    <Title />
+    <Stats />
+    
+    <div class="text-center mt-32">
+      <a 
+        href="/about" 
+        class="explore-button inline-flex items-center gap-2 text-accent border border-accent/20 px-12 py-4 hover:border-accent/40 transition-all duration-300 group relative overflow-hidden"
+      >
+        <span class="relative z-10">explore our advantages</span>
+        <div class="absolute inset-0 bg-accent/5 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Optimize animations with requestAnimationFrame
+  function animateValue(element: HTMLElement, start: number, end: number, duration: number) {
+    const startTime = performance.now();
+    const range = end - start;
+    
+    function update(currentTime: number) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      const value = start + (range * progress);
+      element.textContent = Math.floor(value).toString() + (element.dataset.suffix || '');
+      
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+    
+    requestAnimationFrame(update);
+  }
+
+  // Create scroll trigger for stats animation with better performance
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.stat-number').forEach(stat => {
+          const target = parseInt(stat.textContent || '0', 10);
+          animateValue(stat as HTMLElement, 0, target, 1500);
+        });
+        statsObserver.disconnect(); // Only animate once
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  statsObserver.observe(document.querySelector('.stats-grid')!);
+
+  // Optimize GSAP animations
+  const titleTimeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.why-choose-title',
+      start: 'top 80%',
+    },
+    defaults: {
+      ease: 'power2.out',
+      duration: 0.8
+    }
+  });
+
+  titleTimeline
+    .from('.title-word', {
+      y: 50,
+      opacity: 0,
+      stagger: 0.1,
+    })
+    .from('.intro-text', {
+      y: 20,
+      opacity: 0,
+    }, '-=0.4');
+
+  // Optimize stats animation with batch
+  gsap.from('.stat-item', {
+    scrollTrigger: {
+      trigger: '.stats-grid',
+      start: 'top 80%',
+    },
+    y: 30,
+    opacity: 0,
+    duration: 0.6,
+    stagger: {
+      each: 0.1,
+      ease: 'power2.out'
+    }
+  });
+
+  // Simple button animation
+  gsap.from('.explore-button', {
+    scrollTrigger: {
+      trigger: '.explore-button',
+      start: 'top 90%',
+    },
+    y: 20,
+    opacity: 0,
+    duration: 0.6,
+    ease: 'power2.out'
+  });
+</script>

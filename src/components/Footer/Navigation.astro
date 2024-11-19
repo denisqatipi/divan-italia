@@ -1,0 +1,27 @@
+---
+const links = [
+  { label: 'About Us', href: '/about' },
+  { label: 'Collections', href: '/collections' },
+  { label: 'Showrooms', href: '/showrooms' },
+  { label: 'Sustainability', href: '/sustainability' },
+  { label: 'Care Guide', href: '/care-guide' }
+];
+---
+<div class="footer-content text-center md:text-left">
+  <h3 class="text-white/80 font-display text-base md:text-lg mb-3 md:mb-6">Navigation</h3>
+  <nav>
+    <ul class="space-y-2 md:space-y-4">
+      {links.map(link => (
+          <li>
+            <a
+                href={link.href}
+                class="text-xs md:text-sm text-white/60 hover:text-accent transition-colors duration-300 group relative inline-block"
+            >
+              {link.label}
+              <span class="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300"></span>
+            </a>
+          </li>
+      ))}
+    </ul>
+  </nav>
+</div>

@@ -1,0 +1,97 @@
+---
+const collections = [
+  {
+    category: 'chairs',
+    items: [
+      {
+        name: 'retro stool',
+        price: '299',
+        image: '/images/retro-stool.jpg'
+      },
+      {
+        name: 'loft chair',
+        price: '599',
+        image: '/images/loft-chair.jpg'
+      }
+    ]
+  },
+  {
+    category: 'sofas',
+    items: [
+      {
+        name: 'loft sofa',
+        price: '1,299',
+        image: '/images/loft-sofa.jpg'
+      },
+      {
+        name: 'sofa shell',
+        price: '1,599',
+        image: '/images/sofa-shell.jpg'
+      }
+    ]
+  }
+];
+
+import Image from './Image.astro';
+---
+<div class="space-y-16 md:space-y-32 px-4 md:px-0">
+  {collections.map(collection => (
+    <div class="collection-group">
+      <div class="flex items-center gap-4 mb-8 md:mb-12 collection-category group">
+        <h3 class="text-2xl md:text-3xl text-white/80 font-display tracking-wider">{collection.category}</h3>
+        <div class="h-px bg-gradient-to-r from-accent/40 to-transparent flex-1 transform origin-left transition-transform duration-300 ease-out"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+        {collection.items.map(item => (
+          <div class="collection-item group">
+            <div class="relative overflow-hidden rounded-sm">
+              <Image 
+                src={item.image} 
+                alt={item.name}
+                className="aspect-[4/3] will-change-transform"
+              />
+              
+              <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              <div class="absolute top-4 right-4 bg-black/80 backdrop-blur-sm px-4 py-2 rounded-sm opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out z-30">
+                <span class="text-accent font-light">$ {item.price}</span>
+              </div>
+            </div>
+            
+            <div class="flex justify-between items-end mt-6 relative">
+              <div class="absolute -left-4 w-1 h-0 bg-accent group-hover:h-full transition-all duration-300 ease-out"></div>
+              <p class="text-white/70 group-hover:text-white pl-4 transition-colors duration-300 font-light tracking-wider">
+                {item.name}
+              </p>
+              <a
+                href={`/catalog/${item.name.replace(' ', '-')}`}
+                class="text-accent opacity-0 group-hover:opacity-100 transition-all duration-300 hover:text-accent/80"
+              >
+                <span class="relative z-10">buy</span>
+                <div class="absolute bottom-0 left-0 w-full h-px bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></div>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .collection-item img {
+    transform: scale(1);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .collection-item:hover img {
+    transform: scale(1.05);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .collection-item img {
+      transition: none;
+    }
+  }
+</style>
